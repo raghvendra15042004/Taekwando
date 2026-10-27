@@ -1,0 +1,76 @@
+.dropzone {
+    position: relative;
+    min-height: auto;
+}
+
+.dropzone.dz-clickable .dz-message, .dropzone.dz-clickable .dz-message * {
+    cursor: pointer;
+}
+
+.dropzone .dz-message {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.dropzone.dropzone-default.dropzone-primary {
+    border-color: #0bb783;
+}
+
+.dropzone.dropzone-default {
+    text-align: center;
+    cursor: pointer;
+    border: 2px dashed #ebedf3;
+    border-radius: .42rem;
+}
+
+.file_upload {
+    opacity: 0.0;
+ 
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+ 
+    /* IE 5-7 */
+    filter: alpha(opacity=0);
+  
+    /* Netscape or and older firefox browsers */
+    -moz-opacity: 0.0;
+ 
+    /* older Safari browsers */
+    -khtml-opacity: 0.0;
+ 
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height:100%;
+    cursor: pointer;
+ }
+
+ .upload-action span {
+     font-size: 16px;
+     cursor: pointer;
+ }
+
+ .table-responsive {
+    max-height:300px;
+}
+
+:host ::ng-deep {
+    .modal-custom {
+        z-index: 1;
+       }
+    
+    .modal-backdrop {
+        z-index: 1040!important;
+     }
+     .modal-content {
+        margin: 2 px auto;
+        z-index: 1100!important;
+     }
+}
+
+
+
+

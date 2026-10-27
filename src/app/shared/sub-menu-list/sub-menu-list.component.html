@@ -1,0 +1,20 @@
+<div *ngIf="inboxItems.length>1" class="bundles">
+  <div class="bundle-body">
+    <div class="row">
+      <div *ngFor="let item of inboxItems; let i = index" class="col-sm-2">
+        <!-- [routerLink]="'/feature/'+item.boxId+'/inbox/'+item.id" -->
+        <div (click)="loadSubmenu(item, i)" class="widget">
+          <div class="widget-content" [ngClass]="{'font-warning': item.id == bundleId}">
+            <div class="widget-number">
+              192
+              <span *ngIf="item.id == bundleId" class="float-right">
+                <i class="fas fa-dot-circle"></i>
+              </span>
+            </div>
+            <div class="widget-desc">{{item.name}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

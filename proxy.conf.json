@@ -1,0 +1,6 @@
+{
+  "/api-2023": {
+    "target": "https://www.taekwondoodisha.com/",
+    "secure": false
+  }
+}

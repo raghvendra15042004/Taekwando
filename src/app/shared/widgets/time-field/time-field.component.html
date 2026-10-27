@@ -1,0 +1,35 @@
+<ng-container>
+    <div class="input-group" [ngClass]="{'cursor-not-allow' : Field.disabled == true}">
+        <input class="form-control" 
+            [name]="Field.name"
+            [id]="Field.name"
+            [registerForm]="form"
+            [registerModel]="name"
+            [ngModel]="fieldModel[Field.name]"
+            #name="ngModel"
+            [placeholder]="Field.emptyText"
+            [required]="Field.mandatory"
+            [readonly] = "(Field.allowUserToEdit !== true || Field.disabled) ? true : false"
+            [ngClass]="{'disable-form-field': Field.disabled==true}"
+            >
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" (click)="clearFieldModel()" [ngClass]="{'disable-form-field': Field.disabled == true}">
+                <i class="fa fa-window-close"></i>
+            </button>
+        
+            <button class="btn btn-outline-secondary" type="button" #popOver="ngbPopover" [ngbPopover]="calendarContent" [ngClass]="{'disable-form-field': Field.disabled == true}">
+                <i class="fa fa-clock"></i>
+            </button>
+        </div>
+
+    </div>
+    
+    <span class="form-text text-danger" *ngIf="name.errors?.required">
+        Please enter <span [innerHTML]="Field.text"></span>.
+    </span> 
+</ng-container>
+<ng-template #calendarContent>
+        <ngb-timepicker #tp name="timepicker" [ngModel]="time" (ngModelChange)="onTimeChange($event)" [seconds]="seconds" [hourStep]="hourStep" [minuteStep]="minuteStep" [secondStep]="secondStep" [meridian]="Field.options ? Field.options.showMeridian ? Field.options.showMeridian : true : true">
+        </ngb-timepicker>
+</ng-template>
+

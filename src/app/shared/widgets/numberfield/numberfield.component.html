@@ -1,0 +1,41 @@
+<ng-container>
+    <div class="input-group">
+        <input class="form-control" 
+            [type]="Field.type ? Field.type : 'number'"
+            [required]="Field.mandatory"
+            [pattern]="Field.pattern ? Field.pattern : ''"
+            
+            [placeholder]="Field.emptyText ? Field.emptyText : ''"
+            [ngClass]="{'disable-form-field': Field.disabled==true}"
+            [spellcheck]="Field.spellcheck ? Field.spellcheck : true"
+            [(ngModel)]="fieldModel[Field.name]"
+            [id]="Field.name"
+            [name]="Field.name"
+            #name="ngModel"
+            [disabled]="Field.disabled"
+            [registerForm]="form"
+            [registerModel]="name"
+            (click)="click()"
+            (keyup)="keyup()"
+            (blur)="onblur()"
+            [min]="Field.min"
+            [max]="Field.max"
+            >
+    </div>
+    <span class="form-text text-danger" *ngIf="name.errors?.required && !name.pristine">
+        Please enter <span [innerHTML]="Field.text"></span>.
+    </span>
+
+    <span class="form-text text-danger" *ngIf="name.errors?.pattern">
+        Please enter a valid input.
+    </span>
+
+    <!-- <span class="form-text text-danger" *ngIf="name.errors?.customMin && !name.pristine">
+        Value should be greater than {{Field.range ? Field.range[0] : ''}}
+    </span>
+
+    <span class="form-text text-danger" *ngIf="name.errors?.customMax && !name.pristine">
+        Value should be less than {{Field.range ? Field.range[1] : ''}}
+    </span> -->
+</ng-container>
+

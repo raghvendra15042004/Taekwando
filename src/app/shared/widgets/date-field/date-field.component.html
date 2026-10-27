@@ -1,0 +1,40 @@
+<ng-container>
+    <div class="input-group" [ngClass]="{'cursor-not-allow' : Field.disabled == true}">
+        <input class="form-control" 
+            [name]="Field.name"
+            [id]="Field.name"
+            [registerForm]="form"
+            [registerModel]="name"
+            [(ngModel)]="fieldModel[Field.name]"
+            #name="ngModel"
+            [placeholder]="inputDatetimeFormat"
+            [required]="Field.mandatory"
+            [readonly] = "(Field.allowUserToEdit !== true || Field.disabled) ? true : false"
+            [ngClass]="{'disable-form-field': Field.disabled==true}"
+            (blur)="onBlur()"
+            >
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" (click)="clearFieldModel()" [ngClass]="{'disable-form-field': Field.disabled == true}">
+                <i class="fa fa-window-close"></i>
+            </button>
+        
+            <button class="btn btn-outline-secondary" type="button"  #popOver="ngbPopover" [ngbPopover]="calendarContent" [ngClass]="{'disable-form-field': Field.disabled == true}">
+                <i class="fa fa-calendar"></i>
+            </button>
+            <!-- (click)="openCalendar()" -->
+        </div>
+
+    </div>
+    
+    <span class="form-text text-danger" *ngIf="name.errors?.required">
+        Please enter <span [innerHTML]="Field.text"></span>.
+    </span>
+
+    <span class="form-text text-danger" *ngIf="!validDateFormatStatus">
+        Format should be {{ inputDatetimeFormat }}
+    </span>    
+</ng-container>
+<ng-template #calendarContent>
+    <ngb-datepicker #dp name="datepicker" [minDate]="minDate" [maxDate]="maxDate" placement="left" container="body" [(ngModel)]="datetime" (ngModelChange)="onDateChange($event)"></ngb-datepicker>
+</ng-template>
+

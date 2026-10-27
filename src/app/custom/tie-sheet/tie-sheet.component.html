@@ -1,0 +1,217 @@
+<div class="inbox">
+  <div class="">
+    <!-- stiky_header stiky_header_65 -->
+    <div class="inbox-head">
+      <div class="d-flex align-items-center">
+        <div class="inbox-head-label">
+          <h3 class="inbox-head-title">{{ bundle[0].lebel }}</h3>
+        </div>
+        <ng-container *ngIf="bundle[0].inboxUIConfig.hasFilterButton">
+          <div *ngFor="let filter of bundle[0].inboxUIConfig.filterConfig" class="d-flex align-items-center ml-3">
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{filter.text}}</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <!-- {{ getFilterBody(filter) }} -->
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="d-flex align-items-center ml-3">
+          <button class="btn btn-primary btn-sm" (click)="open(mymodal)"
+            placeholder="Search"><i class="fas fa-filter"></i></button>
+        </div>
+
+        <div class="d-flex align-items-center ml-3" *ngIf="isFilter">
+          <button class="btn btn-danger btn-sm" (click)="resetFilter()"><i class="fas fa-filter"></i> Reset</button>
+        </div>
+
+        <div class="d-flex align-items-center ml-3">
+          <button class="btn btn-primary btn-sm" (click)="downloadCsv()"
+            placeholder="Search"><i class="fas fa-file-excel"></i> CSV</button>
+        </div>
+      </div>
+
+      <div class="inbox-head-toolbar">
+        <div class="inbox-head-wrapper">
+          <ng-container *ngIf="bundle[0].inboxUIConfig.hasToolBox">
+            <div *ngFor="let toolBoxItem of bundle[0].inboxUIConfig.toolBoxItems" class="button-group mr-2">
+              <button type="button" (click)="redirect(toolBoxItem.path)" [ngClass]="toolBoxItem.cls">
+                <i [ngClass]="toolBoxItem.iconClass"></i>
+                <span>{{ toolBoxItem.text }}</span>
+              </button>
+            </div>
+          </ng-container>
+
+          <div class="mr-3">
+            <ngb-pagination [collectionSize]="totalData" [pageSize]="pazeSize" [(page)]="page" [boundaryLinks]="true"
+              (pageChange)="loadPage($event)"></ngb-pagination>
+          </div>
+            <div class="button-group" *ngIf="showGenerateButton">
+              <button type="button" (click)="createNewThread()" class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                <span *ngIf="bundle[0].inboxUIConfig.addBtnText == ''">Add</span>
+                <span *ngIf="bundle[0].inboxUIConfig.addBtnText != ''">{{ bundle[0].inboxUIConfig.addBtnText }}</span>
+              </button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inbox-body">
+    <table class="table">
+      <thead class="thead-dark">
+        <!-- stiky_header stiky_header_100 -->
+        <tr>
+          <th scope="col">
+            <label class="pure-material-checkbox">
+              <input type="checkbox">
+              <span></span>
+            </label>
+          </th>
+          <th scope="col" *ngFor="let head of gridConfig">{{head.label}}</th>
+          <!-- <th scope="col">Action</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="!threadList || !threadList.length">
+          <div class="d-flex justify-content-center align-item-center mt-5">
+            No Data Found
+          </div>
+        </ng-container>
+        <tr *ngFor="let thread of threadList; let i = index">
+          <th scope="row">
+            <label class="pure-material-checkbox">
+              <input type="checkbox">
+              <span></span>
+            </label>
+          </th>
+          <td *ngFor="let head of gridConfig" [ngClass]="head.className">
+            <!-- <ng-container *ngIf="head.fieldType && head.fieldType == 'image' && thread[head.name] != ''">
+                <img src="{{uploadPath + thread[head.name]}}" class="rounded img-fluid img-thumbnail img-round">
+              </ng-container>
+              <ng-container *ngIf="head.fieldType == undefind || head.fieldType == ''">
+                {{ thread[head.name] }}
+              </ng-container>
+  
+              <ng-container *ngIf="head.fieldType == undefind || head.fieldType == ''">
+                {{ thread[head.name] }}
+              </ng-container> -->
+            <ng-container *ngIf="head.fieldType && head.fieldType == 'image' && thread[head.name] != ''; else first">
+              <img src="{{uploadPath + thread[head.name]}}" class="rounded img-fluid img-thumbnail img-round">
+            </ng-container>
+            <ng-template #first>
+              <ng-container
+                *ngIf="head.fieldType && head.fieldType == 'customView' && thread[head.name] != ''; else second">
+                {{ showRegistrationId(thread[head.name]) }}
+                <!-- <img src="{{uploadPath + thread[head.name]}}" class="rounded img-fluid img-thumbnail img-round"> -->
+              </ng-container>
+            </ng-template>
+            <ng-template #second>
+              <ng-container
+                *ngIf="head.fieldType && head.fieldType == 'dateField' && thread[head.name] != '' && head.dateFormat && head.dateFormat != ''; else third">
+                {{ showDate(thread[head.name], head.dateFormat) }}
+              </ng-container>
+            </ng-template>
+
+            <ng-template #third>
+              <ng-container *ngIf="head.name == 'slNo'; else fourth">
+                {{ ((page - 1) * pazeSize) + i + 1 }}
+              </ng-container>
+            </ng-template>
+
+            <ng-template #fourth>
+              <ng-container *ngIf="head.fieldType == 'conbineField'; else fifth">
+                <span *ngFor="let fieldName of head.fieldNames">{{ thread[fieldName] }} </span>
+              </ng-container>
+            </ng-template>
+
+            <ng-template #fifth>
+              <span *ngIf="head.name != 'slNo'">
+                {{ thread[head.name] }}
+              </span>
+            </ng-template>
+          </td>
+          <!-- <td>
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-outline-primary btn-sm" id="dropdownBasic1" ngbDropdownToggle>Action</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem (click)="view(thread)"> <i class="fas fa-eye"></i>View</button>
+                <button *ngIf="bundle[0].inboxUIConfig.showEditBtn" ngbDropdownItem (click)="edit(thread)"> <i
+                    class="fas fa-edit"></i>Edit</button>
+                <button *ngIf="bundle[0].inboxUIConfig.showRmvBtn" ngbDropdownItem (click)="delete(thread)"> <i
+                    class="fas fa-trash"></i>Delete</button>
+              </div>
+            </div>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Filter Tieups</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="">
+      <div class="form-group">
+        <label>Select Event</label>
+        <select [(ngModel)]="filterEvent" class="form-control">
+          <!-- <option value="">Select Event</option> -->
+          <option value="Freshers">Freshers</option>
+          <option value="Kyorugi">Kyorugi</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="">
+      <div class="form-group">
+        <label>Select Category</label>
+        <select [(ngModel)]="filterCategory" class="form-control" (change)="setWeightDivision()">
+          <!-- <option value="">Select Category</option> -->
+          <option value="Sub junior">Sub junior</option>
+          <option value="Cadet">Cadet</option>
+          <option value="Junior">Junior</option>
+          <option value="Senior">Senior</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="">
+      <div class="form-group">
+        <label>Select Gender</label>
+        <select [(ngModel)]="filterGender" class="form-control" (change)="setWeightDivision()">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="">
+      <div class="form-group">
+        <label>Select Weight Division</label>
+        <select [(ngModel)]="filterWeightDivision" class="form-control">
+          <option value="">Select Weight Division</option>
+          <option *ngFor="let weightDivision of weightDivisionList" [value]="weightDivision">
+            {{weightDivision}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+    <button class="btn btn-primary float-right" (click)="filterTieups()">Filter</button> -->
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+    <button class="btn btn-outline-primary float-right" (click)="filterTieups()">Filter</button>
+  </div>
+</ng-template>

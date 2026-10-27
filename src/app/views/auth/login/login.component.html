@@ -1,0 +1,67 @@
+<div class="card o-hidden border-0">
+  <div class="card-header bg-white border-0">
+    <div class="text-center">
+      <h1 class="h4 text-gray-900 mb-4">Welcome To Tab Fest</h1>
+    </div>
+  </div>
+  <div class="card-body p-0">
+    <div>
+      <form [formGroup]="loginForm" autocomplete="off" class="user mt-5 mb-5">
+        <div class="form-group">
+          <input 
+            type="text" 
+            class="form-control form-control-user" 
+            formControlName="userId" 
+            placeholder="User Id"
+            autocomplete="off"
+          >
+        </div>
+        <span class="form-text text-danger" *ngIf="userId.touched && userId.invalid && userId.errors?.required">
+            Please enter User Id.
+        </span>
+        <span class="form-text text-danger" *ngIf="userId.errors?.minlength">
+            User Id should be minimum 3 letters.
+        </span>
+        <span class="form-text text-danger" *ngIf="userId.errors?.maxlength">
+            User Id should be maxmimum 100 letters.
+        </span>
+        <div class="form-group">
+          <input 
+            type="password" 
+            class="form-control form-control-user" 
+            formControlName="password"
+            placeholder="Password"
+            autocomplete="off"
+          >
+        </div>
+        <span class="form-text text-danger" *ngIf="password.touched && password.invalid && password.errors?.required">
+            Please enter Password.
+        </span>
+        <span class="form-text text-danger" *ngIf="password.errors?.minlength">
+            Password should be minimum 3 letters.
+        </span>
+        <span class="form-text text-danger" *ngIf="password.errors?.maxlength">
+            Password should be maxmimum 100 letters.
+        </span>
+        <!-- <div class="form-group">
+          <div class="custom-control custom-checkbox small">
+            <input type="checkbox" class="custom-control-input" id="customCheck">
+            <label class="custom-control-label" for="customCheck">Remember Me</label>
+          </div>
+        </div> -->
+        <div class="login-acton">
+          <a href="" class="forgot-password">Forgot Password</a>
+          <button *ngIf="!isSubmitClicked" class="btn btn-primary btn-user" (click)="submit()">
+            Sign In
+          </button>
+          <button *ngIf="isSubmitClicked" type="button" class="btn btn-primary btn-user">
+              Sign In
+              <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

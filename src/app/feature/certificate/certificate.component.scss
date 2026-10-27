@@ -1,0 +1,211 @@
+.tab-group {
+  display: flex;
+  flex-direction: column;
+
+  .tab-body-wrapper {
+    overflow: visible;
+    display: flex;
+    position: relative;
+
+    .tab-body {
+      position: relative;
+      flex-grow: 1;
+      z-index: 1;
+      overflow: visible;
+
+      .tab-body-content {
+        overflow: visible;
+        padding: 0;
+        height: 100%;
+
+        .form-panel {
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+          box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
+          background-color: #fff;
+          border-radius: 4px;
+          margin-bottom: 2px;
+
+          .panel-head {
+            min-height: 40px !important;
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            position: relative;
+            padding: 0 25px;
+            border-bottom: 1px solid #ebedf2;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+
+            .panel-head-label {
+              display: flex;
+              align-items: center;
+              align-content: flex-start;
+
+              .panel-head-title {
+                margin: 0;
+                padding: 0;
+                font-size: 1.2rem;
+                font-weight: 500;
+                color: #48465b;
+              }
+            }
+          }
+
+          .panel-body {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            border-radius: 4px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0px, 0px, 13px, 0px rgba(82, 63, 105, 0.05);
+
+  .form-head {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    position: relative;
+    padding: 0 25px;
+    border-bottom: 1px solid #ebedf2;
+    min-height: 60px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+
+    .form-head-label {
+      display: flex;
+      align-items: center;
+      align-content: flex-start;
+
+      .form-head-title {
+        margin: 0;
+        padding: 0;
+        font-size: 1.2rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: #48465b;
+      }
+    }
+
+    .form-head-toolbar {
+      display: flex;
+      align-items: center;
+      align-content: flex-end;
+    }
+  }
+
+  .form-body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+
+  .col-form-label {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.5;
+  }
+
+  .form-group label {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+.name-state {
+  position: absolute;
+  top: 48%;
+  left: 15%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 70%;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.field-label {
+  color: #4b1387;
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 2px 5px;
+  width: 13%;
+}
+
+.field-value {
+  color: #4b1387;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(24px, 3.5vw, 24px);
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 3px solid #56208a;
+  padding: 2px 5px;
+  line-height: 1;
+  width: 80%;
+}
+
+/* Achievement description */
+.achievement-text {
+  color: #4b1387;
+  text-align: center;
+  font-size: clamp(16px, 2.8vw, 24px);
+  font-weight: 700;
+}
+
+
+/* Bottom category and event */
+.category-row {
+  position: absolute;
+  top: 71%;
+  left: 18%;
+  width: 64%;
+  display: flex;
+  // flex-direction: column;
+  justify-content: space-between;
+}
+
+.category-item {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.category-text {
+  color: #4b1387;
+  font-size: clamp(17px, 3vw, 20px);
+  font-weight: 700;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.category-underline {
+  width: 100%;
+  height: 2px;
+  margin: 4px auto 0;
+  background-color: #56208a;
+}
+
+.certificate-text {
+  font-family: "Edwardian Script ITC", cursive;
+  font-size: 50px;
+  font-style: normal;
+  color: #4b1717;
+  font-weight: 100;
+}

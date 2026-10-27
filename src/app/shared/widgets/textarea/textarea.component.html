@@ -1,0 +1,63 @@
+<ng-container>
+  <div class="input-group">
+    <textarea 
+        class="text-area-form-control" 
+        [name]="Field.name" 
+        #name="ngModel" 
+        [(ngModel)]="fieldModel[Field.name]"
+        [rows]="Field.rows" 
+        [cols]="Field.cols" 
+        [ngClass]="{'disable-form-field': Field.disabled==true}"
+        [maxlength]="Field.maxlength" 
+        [required]="Field.mandatory" 
+        [pattern]="Field.pattern ? Field.pattern : null"
+        [readonly]="Field.readonly" 
+        [placeholder]="Field.emptyText ? Field.emptyText : ''"
+        [id]="Field.name"
+        [minlength]="(Field.minlength) ? Field.minlength : null" 
+        [registerForm]="form" 
+        [registerModel]="name"
+        (click)="click()" 
+        (change)="inputChange()" 
+        (keyup)="keyup()"
+        ></textarea>
+    <ng-container *ngIf="Field.buttons && Field.buttons.length>0">
+      <div class="input-group-append">
+        <div class="btn-group" role="group">
+          <ng-container *ngFor="let button of Field.buttons">
+            <button [ngStyle]="{'cursor' : button.disabled ? 'not-allowed' : 'pointer'}" type="button"
+              [disabled]="button.disabled" [ngClass]="button.cls" (click)="action(button)">
+              <i [ngClass]="button.iconClass"></i> {{button.label}}
+            </button>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <span class="form-text text-danger" *ngIf="name.errors?.required">
+    Please enter <span [innerHTML]="Field.text"></span>.
+  </span>
+
+  <span class="form-text text-danger" *ngIf="name.errors?.email">
+    Please enter a valid email address.
+  </span>
+
+  <span class="form-text text-danger" *ngIf="name.errors?.minlength">
+    {{ Field.text }} should be {{ Field.minlength }} long.
+  </span>
+
+  <span class="form-text text-danger" *ngIf="name.errors?.pattern">
+    Please enter a valid input.
+  </span>
+
+  <span class="form-text text-info" *ngIf="Field.maxlength>0">
+    <ng-container *ngIf="fieldModel[Field.name] && fieldModel[Field.name].length;  else emptyFieldModelValue">
+      {{fieldModel[Field.name].length}} / {{Field.maxlength}}
+    </ng-container>
+    <ng-template #emptyFieldModelValue>
+      <ng-container>
+        0 / {{Field.maxlength}}
+      </ng-container>
+    </ng-template>
+  </span>
+</ng-container>

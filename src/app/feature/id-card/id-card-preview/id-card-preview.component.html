@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="col-12">
+    <div class="form-wrapper">
+
+      <!-- Preview page header: not part of the ID card -->
+      <div class="stiky_header stiky_header_65">
+        <div class="form-head">
+          <div class="form-head-label">
+            <h3 class="form-head-title">ID Card Preview</h3>
+          </div>
+
+          <div class="form-head-toolbar">
+            <button
+              type="button"
+              class="btn btn-primary mr-3"
+              (click)="downloadAsPDF(1000)">
+              <i class="fas fa-file-pdf mr-2"></i>
+              Export To PDF
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-clean"
+              (click)="back()">
+              <i class="fas fa-arrow-left mr-2"></i>
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ID card preview -->
+      <div class="form-body id-card-preview-body">
+        <div class="id-card-preview-wrapper">
+
+          <div #pdfTable id="pdfTable" class="participant-id-card">
+
+            <!-- Participant photo -->
+            <div class="id-photo">
+              <img
+                *ngIf="profileImage.path"
+                [src]="profileImage.path"
+                alt="Participant Photo">
+              <div
+                *ngIf="!profileImage.path"
+                class="id-photo-placeholder">
+                <i class="fas fa-user"></i>
+              </div>
+            </div>
+
+            <!-- Participant details -->
+            <div class="id-card-fields">
+
+              <div class="id-card-row name-row">
+                <div class="id-card-label">
+                  <i class="fas fa-user"></i>
+                  <span>NAME</span>
+                </div>
+
+                <div class="id-card-value">
+                  {{idCardModel.name}}
+                </div>
+              </div>
+
+              <div class="id-card-row role-row">
+                <div class="id-card-label">
+                  <i class="fas fa-users"></i>
+                  <span>TAEKWONDO OFFICIALS</span>
+                </div>
+
+                <div class="id-card-value">
+                  {{idCardModel.memberType}}
+                </div>
+              </div>
+
+              <div class="id-card-row district-row">
+                <div class="id-card-label">
+                  <i class="fas fa-city"></i>
+                  <span>DISTRICT</span>
+                </div>
+
+                <div class="id-card-value">
+                  {{idCardModel.district}}
+                </div>
+              </div>
+
+              <div class="id-card-row state-row">
+                <div class="id-card-label">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>STATE</span>
+                </div>
+
+                <div class="id-card-value">
+                  {{idCardModel.state}}
+                </div>
+              </div>
+
+              <div class="id-card-row contact-row">
+                <div class="id-card-label">
+                  <i class="fas fa-phone-alt"></i>
+                  <span>CONTACT NO.</span>
+                </div>
+
+                <div class="id-card-value">
+                  {{idCardModel.mobile}}
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

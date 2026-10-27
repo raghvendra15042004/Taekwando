@@ -1,0 +1,29 @@
+<ng-container>
+  <div class="input-group">
+    <div style="padding: 0; flex: 1 1 auto;">
+      <ng-multiselect-dropdown
+        [name]="Field.name" 
+        #name="ngModel" 
+        [(ngModel)]="fieldModel[Field.name]"
+        [ngClass]="{'disable-form-field': Field.disabled==true}"
+        [required]="Field.mandatory" 
+        [id]="Field.name"
+        [registerForm]="form" 
+        [registerModel]="name"
+        [placeholder]="Field.emptyText ? Field.emptyText : ''"
+        [data]="Field.data"
+        [settings]="dropdownSettings"
+        [disabled]="Field.disabled"
+        (onSelect)="onItemSelect($event, Field.name)"
+        (onSelectAll)="onSelectAll($event, Field.name)"
+        (onDeSelect)="onDeSelect($event, Field.name)"
+        (onDeSelectAll)="onDeSelectAll($event, Field.name)"
+        (onFilterChange) = "onFilterChange($event)"
+      >
+      </ng-multiselect-dropdown>
+    </div>
+  </div>
+  <span class="form-text text-danger" *ngIf="name.errors?.required">
+    Please select <span [innerHTML]="Field.text"></span>.
+  </span>
+</ng-container>

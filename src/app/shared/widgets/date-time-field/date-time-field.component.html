@@ -1,0 +1,54 @@
+<ng-container>
+    <div class="input-group" [ngClass]="{'cursor-not-allow' : Field.disabled == true}">
+        <input class="form-control" 
+            [name]="Field.name"
+            [id]="Field.name"
+            [registerForm]="form"
+            [registerModel]="name"
+            [ngModel]="fieldModel[Field.name] ? (moment(fieldModel[Field.name]).format(inputDatetimeFormat)) : ''"
+            #name="ngModel"
+            [placeholder]="inputDatetimeFormat"
+            [required]="Field.mandatory"
+            [readonly] = "(Field.allowUserToEdit !== true || Field.disabled) ? true : false"
+            [ngClass]="{'disable-form-field': Field.disabled==true}"
+            (blur)="onBlur()"
+            >
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" (click)="clearFieldModel()" [ngClass]="{'disable-form-field': Field.disabled == true}">
+                <i class="fa fa-window-close"></i>
+            </button>
+        
+            <button class="btn btn-outline-secondary" type="button" (click)="openCalendar()" #popOver="ngbPopover" [ngbPopover]="calendarContent" [ngClass]="{'disable-form-field': Field.disabled == true}">
+                <i class="fa fa-calendar"></i>
+            </button>
+        </div>
+
+    </div>
+    
+    <span class="form-text text-danger" *ngIf="name.errors?.required">
+        Please enter <span [innerHTML]="Field.text"></span>.
+    </span>
+
+    <span class="form-text text-danger" *ngIf="!validDateFormatStatus">
+        Format should be {{ inputDatetimeFormat }}
+    </span>    
+</ng-container>
+<ng-template #calendarContent>
+    <div *ngIf="!showTimePickerToggle">
+        <ngb-datepicker #dp name="datepicker" [minDate]="minDate" [maxDate]="maxDate" placement="left" container="body" [ngModel]="datetime" (ngModelChange)="onDateChange($event)"></ngb-datepicker>
+        <button class="btn btn-block btn-outline-secondary" 
+            [ngClass]="{'disable-form-field': !fieldModel[Field.name]}" type="button" (click)="toggleDateTimeState($event)">
+            <i class="fa fa-clock"></i>
+        </button>
+    </div>
+    <div *ngIf="showTimePickerToggle">
+        <button class="btn btn-block btn-outline-secondary" 
+            [ngClass]="{'disable-form-field': !fieldModel[Field.name]}" [ngbPopover]="calendarContent" type="button" (click)="toggleDateTimeState($event)">
+            <i class="fa fa-calendar"></i>
+        </button>
+        <ngb-timepicker #tp name="timepicker" [ngModel]="datetime" (ngModelChange)="onTimeChange($event)" [seconds]="seconds" [hourStep]="hourStep" [minuteStep]="minuteStep" [secondStep]="secondStep" [meridian]="Field.options ? Field.options.showMeridian ? Field.options.showMeridian : true : true">
+        </ngb-timepicker>
+    </div>
+    
+</ng-template>
+

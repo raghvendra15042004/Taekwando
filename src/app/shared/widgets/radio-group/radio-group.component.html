@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-end">
+    <div class="form-control multi-radio-group">
+        <div class="radio-inline" [ngClass]="{'cursor-not-allowed' : Field.disabled == true}">
+            <ng-container>
+                <div class="form-check form-check-inline" *ngFor="let radioControl of Field.properties.dataSource">
+                    <input 
+                        type="radio" 
+                        [id]="Field.name" 
+                        class="form-check-input" 
+                        [name]="Field.name"
+                        [value]="radioControl" 
+                        [(ngModel)]="fieldModel[Field.name]" 
+                        #name="ngModel"
+                        [required]="Field.mandatory" 
+                        [registerForm]="form" 
+                        [registerModel]="name"
+                        (ngModelChange)="change($event)">
+                    <label class="form-check-label">{{radioControl}}</label>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

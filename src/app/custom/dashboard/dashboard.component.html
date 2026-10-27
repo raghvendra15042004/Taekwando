@@ -1,0 +1,64 @@
+<div class="dashboard-view">
+  <div class="row" *ngIf="isMultipleTiles">
+    <div *ngFor="let item of landingMenus" class="col-md-3">
+      <div (click)="loadModule(item.landingPage, item.boxId)" class="section">
+        <div class="section-body">
+          <div class="sec-content">
+            <div class="sec-icon">
+              <i [ngClass]="item.icon"></i>
+            </div>
+            <div class="sec-title">
+              <h3>{{item.title}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="stats-container">
+        <div class="stat-card" *ngFor="let stat of stats">
+          <div class="card-content">
+            <div class="card-header">
+              <h4>{{ stat.label }}</h4>
+              <!-- <i class="fas fa-info-circle info-icon" title="More info"></i> -->
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="card-body">
+              <span class="stat-value">{{ stat.value }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-md-6">
+      <div class="card g-info bg-gradient hoverable card-xl-stretch mb-xl-8">
+        <div class="card-body">
+          <div id="chart">
+          <!-- <apx-chart 
+            [series]="chartOptions.series" 
+            [chart]="chartOptions.chart" 
+            [dataLabels]="chartOptions.dataLabels"
+            [plotOptions]="chartOptions.plotOptions" 
+            [legend]="chartOptions.legend" 
+            [fill]="chartOptions.fill"
+            [stroke]="chartOptions.stroke" 
+            [tooltip]="chartOptions.tooltip">
+          </apx-chart> -->
+
+          <apx-chart
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [xaxis]="chartOptions.xaxis">
+          </apx-chart>
+        </div>
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+</div>

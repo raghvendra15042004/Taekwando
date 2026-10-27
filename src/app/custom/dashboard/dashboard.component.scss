@@ -1,0 +1,133 @@
+.dashboard-view {
+    margin-top: 1rem;
+    .section {
+        padding: 1.5rem;
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        box-shadow: 0px 0px 13px rgb(82 63 105 / 49%);
+        margin-bottom: 20px;
+        border-radius: 4px; 
+        background: #f0f9fff2;
+        cursor: pointer;
+        .section-body {
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+            border-radius: 4px;
+        
+            .sec-content {
+                display: flex;
+                flex-wrap: nowrap;
+        
+                .sec-icon {
+                    flex: 0 0 50px;
+                    padding-right: 20px;
+                    i {
+                        font-size: 2.5rem;
+                    } 
+                }
+            
+                .sec-title {
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 1.55rem;
+                    color: #48465b;
+                }
+            }
+        }
+    }
+}
+
+.fs-2 {
+    font-size: 1.5rem!important;
+}
+
+.fw-bolder {
+    font-weight: 600!important;
+}
+
+.fw-bold {
+    font-weight: 500!important;
+}
+
+
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+}
+
+.stat-card {
+  flex: 1 1 calc(33.333% - 0px);
+  background: linear-gradient(135deg, #0dcaf0, #0275d8);
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s ease;
+  min-width: 250px;
+  max-width: 320px;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 15px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.info-icon {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.info-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.card-body {
+  text-align: center;
+  padding: 0;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+
+@media (max-width: 992px) {
+  .stat-card {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 576px) {
+  .stat-card {
+    flex: 1 1 100%;
+  }
+}

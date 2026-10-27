@@ -1,0 +1,40 @@
+<ng-container>
+  <div class="input-groupv d-flex justify-content-between align-items-center">
+    <!-- <input class="form-control" 
+            type="text"
+            [required]="Field.mandatory"
+            [id]="Field.name"
+            [name]="Field.name"
+            [(ngModel)]="fieldModel[Field.name]"
+            #name="ngModel"
+            [registerForm]="form"
+            [registerModel]="name"
+            (click)="click()"
+            readonly
+            > -->
+
+    <button type="button" class="btn btn-outline-primary" (click)="openUploadModal()">
+      <i class="fas fa-cloud-upload-alt"></i> Upload Files
+    </button>
+
+    <!-- <a href="javascript:(void);" *ngIf="fileName" (click)="prevFiiewle()">1 File Selected.</a> -->
+
+    <img *ngIf="fileName" class="cursor-pointer" [src]="filePath()" (click)="prevFiiewle()" width="120" height="150">
+  </div>
+  <span class="form-text text-danger" *ngIf="requiredError">
+    Please upload file.
+  </span>
+  <!--
+
+    <span class="form-text text-danger" *ngIf="name.errors?.email">
+        Please enter a valid email address.
+    </span>
+
+    <span class="form-text text-danger" *ngIf="name.errors?.minlength">
+        {{ Field.text }} should be {{ Field.minlength }} long.
+    </span>
+
+    <span class="form-text text-danger" *ngIf="name.errors?.pattern">
+        Please enter a valid input.
+    </span> -->
+</ng-container>

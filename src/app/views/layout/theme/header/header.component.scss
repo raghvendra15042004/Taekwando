@@ -1,0 +1,38 @@
+.nav-item{
+    padding: 0px 5px;
+    margin: 0px 2px;
+}
+
+li.nav-item:hover {
+    border-radius: 4px;
+    background: #efefef;
+}
+
+li.nav-item:active {
+    border-radius: 4px!important;
+    background: #efefef!important;
+}
+
+li.nav-item:hover ul.dropdown-menu{
+    display: block;	/* Display the dropdown */
+}
+
+.dropdown-menu {
+    padding: .1rem 0;
+}
+.dropdown-item {
+    padding: .1rem 1.5rem
+}
+
+.login-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .login-user-label {
+        font-weight: 500;
+    }
+}
+
+.logo-img {
+    height: 40px !important;
+}

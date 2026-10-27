@@ -1,0 +1,189 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-wrapper">
+            <div class="stiky_header stiky_header_65">
+                <div class="form-head">
+                    <div class="form-head-label">
+                        <h3 class="form-head-title">
+                            Registration Form
+                        </h3>
+                    </div>
+                    <div class="form-head-toolbar">
+                        <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center p-2">
+                                <button class="btn btn-primary" (click)="downloadAsPDF(registrationId)">Export To
+                                    PDF</button>
+                            </div>
+                        </div>
+                        <a href="javascript:;" class="btn btn-clean" (click)="back()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span class="hidden-mobile">Back</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-body">
+                <div class="tab-group">
+                    <div class="tab-body-wrapper">
+                        <div class="tab-body">
+                            <div class="tab-body-content">
+                                <div class="col-lg-12 col-md-12 col-12 mt-2 d-flex justify-content-center">
+                                    <div #pdfTable class="card w-75 rounded border-0 shadow px-4 py-5 watermark">
+                                        <div class="content p-3" style="border: 10px double #212529; font-weight: bold;">
+                                            <div class="row">
+                                                <div class="col-md-12 text-center mb-2">
+                                                    <h3 style="font-weight: bold !important;">WARRIOR'S CUP</h3>
+                                                </div>
+                                                <div class="col-md-12 text-center p-2 mb-2">
+                                                    <h3 style="font-weight: bold !important;">OPEN NATIONAL TAEKWONDO CHAMPIONSHIP 2026</h3>
+                                                </div>
+                                                <div class="col-md-12 text-center p-2 mb-2">
+                                                    <h4 style="font-weight: bold !important;"> Registration id : {{registrationId}}</h4>
+                                                </div>
+                                                <div class="col-md-12 text-center p-2">
+                                                    <div class="row">
+                                                        <span class="col-md-6 d-flex justify-content-center">
+                                                            <div class="card">
+                                                                <img class="card-img-top" src="{{profileImageUrl}}" style="width: 14rem;">
+                                                                <span class="m-4">Profile Image</span>
+                                                            </div>
+                                                        </span>
+                                                        <span class="col-md-6 d-flex justify-content-center">
+                                                            <div class="card">
+                                                                <img class="card-img-top" src="{{adharCardUrl}}" style="width: 14rem;">
+                                                                <span class="m-4">Age Proof Certificate</span>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-12 p-2">
+                                                    <div class="row">
+                                                        <span class="col-md-6 d-flex justify-content-start">Name :
+                                                            {{registerModel.firstName}} {{registerModel.middleName}}
+                                                            {{registerModel.lastName}}</span>
+                                                        <span class="col-md-6 d-flex justify-content-start">
+                                                            T-Shirt Size : {{registerModel.tShirtSize}} 
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-12 p-2">
+                                                    <div class="row">
+                                                        <div class="col-md-6 d-flex justify-content-start">Email Id :
+                                                            {{registerModel.emailId}}</div>
+                                                        <div class="col-md-6 d-flex justify-content-start"> Mobile : {{registerModel.mobile}} / Whatsapp : {{registerModel.whatsapp}}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 p-2">
+                                                    <div class="row">
+                                                        <div class="col-md-6 d-flex justify-content-start">State :
+                                                            {{registerModel.state}}</div>
+                                                        <div class="col-md-6 d-flex justify-content-start">Districts :
+                                                            {{registerModel.district}}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 p-2">
+                                                    <div class="row">
+                                                        <span class="col-md-6 d-flex justify-content-start">Institute
+                                                            Name :
+                                                            {{registerModel.instituteName}}</span>
+                                                        <span class="col-md-6 d-flex justify-content-start">Events :
+                                                            {{registerModel.events}}</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 p-2">
+                                                    <div class="row">
+                                                        <span class="col-md-6 d-flex justify-content-start">D.O.B. :
+                                                            {{showDateWithFormat(registerModel.dob)}}</span>
+                                                        <span class="col-md-6 d-flex justify-content-start">Age :
+                                                            {{registerModel.age}}</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 p-2">
+                                                    <div class="row">
+                                                        <span class="col-md-6 d-flex justify-content-start">Gender :
+                                                            {{registerModel.gender}}</span>
+                                                        <span *ngIf="registerModel.events != 'Poomsae'"
+                                                            class="col-md-6 d-flex justify-content-start">Category :
+                                                            {{registerModel.categoryName}}</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 p-2 pb-2">
+                                                    <div class="row">
+                                                        <span class="col-md-6 d-flex justify-content-start">Weight (Kg)
+                                                            :
+                                                            {{registerModel.weight}}</span>
+                                                        <span class="col-md-6 d-flex justify-content-start">Weight
+                                                            Division :
+                                                            {{registerModel.weightDivision}}</span>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+                                                <div class="col-md-12 p-2">
+                                                    <div class="row">
+                                                        <span class="col-md-6 d-flex justify-content-start">Height (cms) :
+                                                            {{registerModel.height}}</span>
+                                                        <span class="col-md-6 d-flex justify-content-start">Physical Challenged : {{registerModel.physicalChallenged}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 p-2">
+                                                    <div class="row">
+                                                        <span class="col-md-6 d-flex justify-content-start">Coach Name :
+                                                            {{registerModel.coachName}}</span>
+                                                        <span class="col-md-6 d-flex justify-content-start"> Coach Mobile : {{registerModel.coachMobile}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 p-2">
+                                                    <div class="row">
+                                                        <span class="col-md-6 d-flex justify-content-start">Coach Email Id :
+                                                            {{registerModel.coachEmailId}}</span>
+                                                        <span class="col-md-6 d-flex justify-content-start"> Coach Whatsapp No : {{registerModel.coachWhatsapp}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 p-2 pb-4 mb-4">
+                                                    <div class="row">
+                                                        <span class="col-md-6 d-flex justify-content-start">Manager Name :
+                                                            {{registerModel.managerName}}</span>
+                                                        <span class="col-md-6 d-flex justify-content-start">Manager Mobile : {{registerModel.managerMobile}}</span>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+                                                <div class="col-md-12 p-2 pt-2 mt-2">
+                                                    <div class="row">
+                                                        <span class="col-md-6 d-flex justify-content-start">Coach
+                                                            Signature</span>
+                                                        <span class="col-md-6 d-flex justify-content-start">Candidate /
+                                                            Parents
+                                                            Signature
+                                                            (If candidate is bellow 18 years, parents signature is
+                                                            mandatory.)
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

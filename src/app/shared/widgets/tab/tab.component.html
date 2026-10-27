@@ -1,0 +1,103 @@
+<div class="tab-group">
+  <div class="tab-body-wrapper">
+    <div class="tab-body">
+      <div class="tab-body-content">
+        <ng-container *ngIf="tab_config">
+          <ng-container *ngFor="let tab of tab_config.tabs; let tabIndex = index">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-panel">
+                  <div class="panel-head">
+                    <div class="panel-head-label">
+                      <h3 class="panel-head-title">{{tab.text}}</h3>
+                    </div>
+                  </div>
+                  <div class="panel-body">
+                    <div class="form-group row">
+                      <ng-container *ngFor="let field of tab.fields, let fieldIndex = index">
+                        <div class="col-lg-12 col-form-label" [hidden]="field.hidden">
+                          <div class="form-group row">
+                            <div class="col-lg-3 col-form-label">
+                              <app-label [label]="field"></app-label>
+                            </div>
+                            <div class="col-lg-9">
+                              <!-- <div class="input-group">
+                                <input type="text" name="productName" class="form-control" placeholder="Product Name">
+                              </div> -->
+                              <runtime-widget 
+                                [Field]="field" 
+                                [fieldModel]="tab_model"
+                                [formConfig]="tab_config"
+                                [form]="form"
+                                ></runtime-widget>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+
+
+                      <!-- <div class="col-lg-12 col-form-label">
+                            <div class="form-group row">
+                              <div class="col-lg-3 col-form-label">
+                                <label for="">Product Name</label>
+                              </div>
+                              <div class="col-lg-9">
+                                <div class="d-flex justify-content-end">
+                                  <div class="form-control">
+                                    <div class="radio-inline">
+                                      <label for="" class="radio">
+                                        <input type="radio"> Yes
+                                      </label>
+                                      <label for="" class="radio">
+                                        <input type="radio"> No
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="input-group-append">
+                                    <button class="btn btn-secondary">
+                                      <i class="fas fa-window-close"></i>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+        
+                          <div class="col-lg-12 col-form-label">
+                            <div class="form-group row">
+                              <div class="col-lg-3 col-form-label">
+                                <label for="">Product Name</label>
+                              </div>
+                              <div class="col-lg-9">
+                                <div class="input-group">
+                                  <input type="text" class="form-control">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+        
+                          <div class="col-lg-12 col-form-label">
+                            <div class="form-group row">
+                              <div class="col-lg-3 col-form-label">
+                                <label for="">Product Name</label>
+                              </div>
+                              <div class="col-lg-9">
+                                <div class="input-group">
+                                  <input type="text" class="form-control">
+                                </div>
+                              </div>
+                            </div>
+                          </div> -->
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+</div>
